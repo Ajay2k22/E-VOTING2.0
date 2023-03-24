@@ -20,7 +20,7 @@ export default {
                 fathername: '',
                 phone: '',
                 age: '',
-                email: '',
+                adharcard: '',
                 voteraddress: ''
             }
         }
@@ -29,8 +29,8 @@ export default {
     methods: {
         async addVoter12() {
             try {
-                if (this.vote.name != '' && this.vote.age != '' && this.vote.fathername != '' && this.vote.email != '' && this.vote.phone != '' && this.vote.email != '' && this.vote.voteraddress != '') {
-                    let response = await this.contract_store.contract.addVoter(this.vote.voteraddress, this.vote.name, this.vote.fathername, this.vote.phone, this.vote.email, this.vote.age);
+                if (this.vote.name != '' && this.vote.age != '' && this.vote.fathername != '' && this.vote.adharcard != '' && this.vote.phone != '' && this.vote.adharcard != '' && this.vote.voteraddress != '') {
+                    let response = await this.contract_store.contract.addVoter(this.vote.voteraddress, this.vote.name, this.vote.fathername, this.vote.phone, this.vote.adharcard, this.vote.age);
                     alert('Successfully Voter Added')
 
                     this.voter_store.addVoteraddress({
@@ -90,8 +90,8 @@ export default {
                 <input placeholder="Phone number" v-model="this.vote.phone" type="text">
             </div>
             <div class="register-input">
-                <label>EmailAddress</label>
-                <input placeholder="Email Address" v-model="this.vote.email" type="text">
+                <label>adharcardAddress</label>
+                <input placeholder="adharcard Address" v-model="this.vote.adharcard" type="text">
             </div>
             <div class="register-input">
                 <label>Age</label>

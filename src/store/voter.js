@@ -10,7 +10,7 @@ export const voterStore = defineStore(
                     age: '',
                     fathername: '',
                     phone_number: '',
-                    email: '',
+                    adharcard: '',
                     authorised: '',
                     voted: '',
                 },
@@ -30,7 +30,7 @@ export const voterStore = defineStore(
                 this.Voters.age = payload.age
                 this.Voters.fathername = payload.fathername
                 this.Voters.phone_number = payload.phone_number
-                this.Voters.email = payload.email
+                this.Voters.adharcard = payload.adharcard
                 this.Voters.authorised = payload.authorised
                 this.Voters.voted = payload.voted
             },

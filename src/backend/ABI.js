@@ -46,7 +46,7 @@ export const ABI = [
 			},
 			{
 				"internalType": "string",
-				"name": "_email_address",
+				"name": "_adharcard",
 				"type": "string"
 			},
 			{
@@ -266,7 +266,7 @@ export const ABI = [
 			},
 			{
 				"internalType": "string",
-				"name": "email",
+				"name": "adharcard",
 				"type": "string"
 			},
 			{

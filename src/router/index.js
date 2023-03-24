@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Register from '../views/Register.vue'
+import AdminRegister from '../views/admin/AdminRegister.vue'
+import AdminLogin from '../views/admin/AdminLogin.vue'
 import Dashboard from '../views/Dashboard.vue'
 import Election from '../views/Election.vue'
 import Candidate from '../views/Candidate.vue'
@@ -29,9 +31,19 @@ const router = createRouter({
       component: Election
     },
     {
-      path: '/admin',
+      path: '/admin/election-start',
       name: 'Admin',
       component: Admin
+    },
+    {
+      path: '/admin/register',
+      name: 'AdminRegister',
+      component: AdminRegister
+    },
+    {
+      path: '/admin/login',
+      name: 'AdminLogin',
+      component: AdminLogin
     },
     {
       path: '/dashboard',

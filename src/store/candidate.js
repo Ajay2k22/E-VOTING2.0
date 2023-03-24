@@ -5,13 +5,13 @@ export const candidateStore = defineStore(
     {
         state: () => (
             {
-                count:-1,
+                count: -1,
                 Candidate: {
                     name: '',
                     age: '',
                     party: '',
                     numvotes: 0,
-                    id:0,
+                    id: 0,
                 },
                 candidates: [],
                 candidateslength: ''
@@ -20,6 +20,10 @@ export const candidateStore = defineStore(
         // persist: true,
         getters: {
             // doubleCount: (state) => state.count * 2,
+            retCandidate: state => {
+                // Return an array of item IDs
+                return state.candidates.map(item => item.id)
+            },
         },
         actions: {
             increment() {
@@ -30,10 +34,13 @@ export const candidateStore = defineStore(
                 this.Candidate.name = payload.name;
                 this.Candidate.age = payload.age;
                 this.Candidate.party = payload.party;
-                this.Candidate.id=this.count
+                this.Candidate.id = this.count
             },
             pushCandidate(payload) {
                 this.candidates.push(payload)
+            },
+            returnCandidate() {
+                return this.candidates
             }
         },
     })

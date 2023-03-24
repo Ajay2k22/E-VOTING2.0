@@ -3,9 +3,8 @@ import { ABI } from './ABI.js';
 import { contractStore } from '../store/contractStore.js';
 
 export const backend = {
-
     async voterSigner(voter_address) {
-        let contractAddress = "0xE5C225134A865A1C7Ae461649462F22663361F2D";
+        let contractAddress = "0xc8247dA38797F14F860E62D05538842635e822d0";
         let signer3 = new ethers.providers.JsonRpcProvider("http://localhost:8545").getSigner(voter_address)
         let contract_signer = new ethers.Contract(
             contractAddress,
@@ -20,7 +19,7 @@ export const backend = {
     },
     async loader() {
         try {
-            const contractAddress = "0xE5C225134A865A1C7Ae461649462F22663361F2D";
+            const contractAddress = "0xc8247dA38797F14F860E62D05538842635e822d0";
             let url = "http://localhost:8545";
             let provider = new ethers.providers.JsonRpcProvider(url);
             console.log('signer')

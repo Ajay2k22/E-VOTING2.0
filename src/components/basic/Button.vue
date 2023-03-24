@@ -32,6 +32,7 @@ button {
 
 button:hover {
     
-    background: green;
+    background: var(--white);
+    color:var(--secondary)
 }
 </style>

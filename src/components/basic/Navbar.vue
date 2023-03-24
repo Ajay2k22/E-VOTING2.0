@@ -21,7 +21,7 @@ export default {
     <nav>
         <ul> {{ content1 }} </ul>
         <ul> {{ content2 }} </ul>
-        <router-link :to="{ name: 'Admin' }">
+        <router-link :to="{ name: 'AdminRegister' }">
             <Button :text='button' />
         </router-link>
     </nav>

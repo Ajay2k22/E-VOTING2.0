@@ -1,4 +1,5 @@
 <script>
+import axios from "axios"
 import Button from '../components/basic/Button.vue';
 import { backend } from '../backend';
 import { voterStore } from '../store/voter.js';
@@ -20,7 +21,7 @@ export default {
             candidates: '',
             total_votes: '',
             length: '',
-            authorize:''
+            authorize: ''
         }
     },
 
@@ -29,11 +30,37 @@ export default {
     },
 
     methods: {
+        async EndElection() {
+            let length = await this.contract_store.contract.getNumCandidates()
+            console.log(length.toString())
+            this.length = length.toString()
+
+            for (let i = 0; i < this.length; i++) {
+                let response = await this.contract_store.contract.candidates(i)
+                console.log("main hoon")
+                try {
+                    const res = await axios.post('http://localhost:3000/api/end-election', {
+                        name: response.name,
+                        age: response.age.toString(),
+                        party: response.party,
+                        numVotes: response.numVotes.toString()
+                    })
+                } catch (e) {
+                    console.log(e)
+                }
+
+                // candidate.push(response.name, response.party, response.age.toString(), response.numVotes.toString())
+
+
+            }
+
+            alert("Election has been ended")
+        },
         async authorizeVoter1() {
             try {
                 let response = await this.contract_store.contract.authorizeVoter1(this.voter_store.voter_address)
                 console.log(`success ${response}`)
-                this.authorize=response.toString()
+                this.authorize = response.toString()
                 alert('Authorized done')
             } catch (e) {
                 console.log(e)
@@ -73,22 +100,22 @@ export default {
         async Vote1(id) {
             try {
                 // console.log(this.vote)
-                if(this.authorize!=''){
-                    if (this.voter_store.Voters.voted != true ) {
-                    const contract = backend.voterSigner(this.voter_store.voter_address)
-                    console.log("id", id)
-                    console.log(this.voter_store.voter_address)
-                    console.log(this.contract_store.contract_signer)
-                    await this.contract_store.contract_signer.vote(id)
-                    this.first()
-                    this.voter_store.voted()
-                    // console.log(`success from vote ${response}`)
-                    // this.voter_store.voted()
-                    alert('Voted')
+                if (this.authorize != '') {
+                    if (this.voter_store.Voters.voted != true) {
+                        const contract = backend.voterSigner(this.voter_store.voter_address)
+                        console.log("id", id)
+                        console.log(this.voter_store.voter_address)
+                        console.log(this.contract_store.contract_signer)
+                        await this.contract_store.contract_signer.vote(id)
+                        this.first()
+                        this.voter_store.voted()
+                        // console.log(`success from vote ${response}`)
+                        // this.voter_store.voted()
+                        alert('Voted')
+                    } else {
+                        alert('Already voted')
+                    }
                 } else {
-                    alert('Already voted')
-                }
-                }else{
                     alert('You have to authorized yourself')
                 }
             } catch (e) {
@@ -104,11 +131,12 @@ export default {
     mounted() {
         // console.log()
 
-         this.first()
-         this.getTotalVotes1()
+        this.first()
+        this.getTotalVotes1()
+
     },
-    updated(){
-       
+    updated() {
+
     }
 
 }
@@ -123,6 +151,7 @@ export default {
                     <Button text="Home Page"></Button>
                 </router-link>
                 <Button @click="refresh" text="Refresh Page"></Button>
+                <Button @click="this.EndElection" text="End Election"></Button>
             </div>
 
         </nav>

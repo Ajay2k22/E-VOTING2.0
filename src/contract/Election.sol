@@ -44,7 +44,6 @@ contract Election {
     ) public ownerOnly {
         candidates.push(Candidate(_name, _age, _party, 0));
     }
-
     function addVoter(
         address _voterAddress,
         string memory _name,
@@ -77,7 +76,6 @@ contract Election {
         require(voters[msg.sender].authorised);
         voters[msg.sender].whom = candidateIndex;
         voters[msg.sender].voted = true;
-
         candidates[candidateIndex].numVotes++;
         totalVotes++;
     }
@@ -89,4 +87,5 @@ contract Election {
     function candidateInfo(uint index) public view returns (Candidate memory) {
         return candidates[index];
     }
+    
 }
